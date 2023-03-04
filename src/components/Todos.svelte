@@ -7,7 +7,7 @@
 </script>
 
 <ul>
-	{#each todos as todo}
+	{#each todos as todo (todo.id)}
 		<Todo {todo} {onToggle} {onRemove} />
 	{/each}
 </ul>

@@ -1,12 +1,13 @@
 <script>
 	import Todos from '../components/Todos.svelte';
+	import { onMount } from 'svelte';
 
-	$: todos = [
-		{ id: 1, title: 'Clean My Room', done: false },
-		{ id: 2, title: 'Watch a movie', done: false },
-		{ id: 3, title: 'Drink Soda', done: true },
-		{ id: 4, title: 'Finish summer course', done: true }
-	];
+	$: todos = [];
+
+	onMount(async () => {
+		const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+		todos = await res.json();
+	});
 
 	function handleToggle(todo) {
 		for (let i = 0; i < todos.length; i++) {
